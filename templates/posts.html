@@ -1,0 +1,41 @@
+{% extends 'base/main.html' %}
+{% block title %} Paylaşımlarımız {% endblock %}
+{% block content %}
+
+  <!-- Post Content -->
+
+  <article>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-12 col-md-10 col-sm-6 mx-auto">
+          {% if posts %}
+            {% for post in posts%}
+
+
+              <a href="{{ Post.get_absolute_url }}"  >
+              <b>Post'a gitmek için tıklayınız.</b></a><br>
+
+
+
+              <a href="/posts/{{post.id}}">
+              <b>{{post.title}}</b></a> 
+              <a href="/posts/{{post.id}}" style="float:right;">{{post.updated}}</a>
+              {{post.content}}
+              <hr>
+            {% endfor %}
+          {% else %}
+            <p> Atılmış post bulunamadı. </p>
+          {% endif %}
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <hr>
+
+    
+
+{% endblock %}

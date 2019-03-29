@@ -1,0 +1,31 @@
+{% extends 'base/main.html' %}
+{% block title %} Post Paylaş {% endblock %}
+{% block content %}
+
+<article>
+
+	<div class="container">
+		{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+			<li{% if message.tags %} class="{{ message.tags }}"{% endif %}><b>{{ message }}</b></li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<form method="POST"> {% csrf_token %}
+					{{ form.as_p}}
+					<input type = 'submit' value='Kaydet' />
+
+				</form>
+			</div>
+		</div>
+	</div>
+</article>
+
+
+
+
+{% endblock %}
