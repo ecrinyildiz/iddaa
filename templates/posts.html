@@ -2,32 +2,36 @@
 {% block title %} Paylaşımlarımız {% endblock %}
 {% block content %}
 
-  <!-- Post Content -->
+<!-- Post Content -->
 
-  <article>
+<article>
 
-    <div class="container">
+  <div class="container">
 
-      <div class="row">
-        <div class="col-lg-12 col-md-10 col-sm-6 mx-auto">
-          {% if posts %}
-            {% for post in posts%}
-
-
-              <a href="{{ Post.get_absolute_url }}"  >
-              <b>Post'a gitmek için tıklayınız.</b></a><br>
-
+    <div class="row">
+      <div class="col-lg-12 col-md-10 col-sm-6 mx-auto">
+        <a class="btn btn-primary float-right" href="/post_create_view">Yeni Post Atın</a>
+      </div>
+      <div class="col-lg-12 col-md-10 col-sm-6 mx-auto">
+        {% if posts %}
+        {% for post in posts%}
 
 
-              <a href="/posts/{{post.id}}">
-              <b>{{post.title}}</b></a> 
-              <a href="/posts/{{post.id}}" style="float:right;">{{post.updated}}</a>
-              {{post.content}}
-              <hr>
+        <a href="{{ Post.get_absolute_url }}"  >
+          <b>Post'a gitmek için tıklayınız.</b></a><br>
+
+
+
+          <a href="/posts/{{post.id}}">
+            <b>{{post.title}}</b></a> 
+            <a href="/posts/{{post.id}}" style="float:right;">{{post.updated}}</a>
+            {{post.content}}
+            <hr>
             {% endfor %}
-          {% else %}
-            <p> Atılmış post bulunamadı. </p>
-          {% endif %}
+            {% else %}
+            <p> Atılmış post bulunamadı. Post atmak için <a href="/post_create_view">tıklayınız.</a></p>
+
+            {% endif %}
           </div>
 
         </div>
@@ -38,4 +42,4 @@
 
     
 
-{% endblock %}
+    {% endblock %}

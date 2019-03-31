@@ -1,20 +1,23 @@
-{% extends 'base/main.html' %}
-
-{% block title %}Login{% endblock %}
-
+{% extends '../base/main.html' %}
+{% block title %}Üye Girişi{% endblock %}
 {% block content %}
+
 <div class="container">
 	<div class="row">
 		<div class="col-lg-8 col-md-10 mx-auto">
 			<div class="post-preview">
+				{%if user.is_authenticated%}
+				
+				{%else%}
 				<h2>Üye Girişi</h2>
 				<form method="post">
 					{% csrf_token %}
 					{{ form.as_p }}
-					<button type="submit">Login</button>
+					<button type="submit">Giriş</button>
 				</form>
-				{% endblock %}
+				{%endif%}
 			</div>
 		</div>
 	</div>
 </div>
+{% endblock %}

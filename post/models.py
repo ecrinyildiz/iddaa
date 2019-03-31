@@ -7,10 +7,11 @@ class Post(models.Model):
 	content = models.TextField(verbose_name='İçerik')
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False, verbose_name='Yayımlanma Tarihi')
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
-	font_size = models.IntegerField()
+
 
 	def __str__(self):
 		return self.title
+		return self.updated
 
 	def get_absolute_url(self):
 		return reverse('post:posts', kwargs={'id': self.id})
