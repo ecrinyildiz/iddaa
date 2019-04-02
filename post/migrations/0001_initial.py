@@ -14,6 +14,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Post',
             fields=[
+                ('no', models.IntegerField(auto_created=True, primary_key=False, serialize=False, verbose_name='no')),
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=120, verbose_name='Başlık')),
                 ('content', models.TextField(verbose_name='İçerik')),

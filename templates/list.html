@@ -1,0 +1,62 @@
+{% extends 'base/main.html' %}
+{% block title %} Posts {% endblock %}
+{% block content %}
+
+
+
+<article>
+
+  <div class="container">
+    <div class="col-lg-12 col-md-10 col-sm-6 mx-auto">
+      <a class="btn btn-primary float-right" href="/post_create_view">Yeni Post Atın</a>
+  </div>
+
+  <table class="table">
+      <caption ><a href = "#">Bütün Postlar</caption></a>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Başlık</th>
+          <th scope="col">İçerik</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Tarih</th>
+      </tr>
+  </thead>
+  {% for post in posts%}
+
+  <tbody>
+    <tr>
+      <th scope="row">{{post.id}}</th>
+      <td><b><a href="/posts/{{post.id}}">{{post.title}}</a></td></b>
+      <td>{{post.content|truncatewords:5}}</td>
+      <td><a href = "#"><button type="button" style="border:2px solid; border-radius:15px;" class = "btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true">Edit</span></button></a></div></td></td>
+      <td><a href="/posts/{{post.id}}">{{post.updated}}</a></td>
+      {% endfor %}
+        </tbody>
+</table>
+
+{% if posts.has_other_pages %}
+  <ul class="pagination">
+    {% if posts.has_previous %}
+      <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in posts.paginator.page_range %}
+      {% if posts.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if posts.has_next %}
+      <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
+
+      {% endblock %}
