@@ -1,0 +1,30 @@
+{% extends 'base/main.html' %}
+{% block title %} Post: {{post.title}}  {% endblock %}
+{% block content %}
+
+  <!-- Post Content -->
+
+  <article>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+            <h1>{{post.title}}</h1>
+            <br>
+            <p>{{post.content}}</p><br>
+            <div align="left">{{post.user}}</div><div align="right">{{post.updated}}</div><br>
+            <hr>
+          <div class="clearfix">
+          <a class="btn btn-primary float-right" href="/posts">Bütün postları gör</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+  
+{% endblock %}

@@ -49,26 +49,18 @@ def post_delete(request, id, *args, **kwargs):
 	return redirect("/posts")
 
 def post_update(request, id, *args, **kwargs):
-	post = get_object_or_404(Post, id = id)
-
-	if request.method == "POST":
-		form = PostCreateForm(request.POST, instance=post)
-
-		try:
-			if form.is_valid():
-				form.save()
-				messages.success(request, 'Edit kaydedildi.')
-				return redirect("/posts")
-		except Exception as e:
-			messages.warning(request, "Edit kaydedilmedi: {}".format(e))
-	else:
-		form = PostCreateForm(instance=post)
-
-	context = {
-	'post':post,
-	'form':form
-	}
-	return render(request, "/posts", context)
+    post = get_object_or_404(Post, id = id)
+    if request.method == "POST":
+        form = PostCreateForm(request.POST or None)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', id = id)
+    else:
+        form = PostCreateForm(instance=post)
+    return render(request, 'post_detail_edit.html', {'form': form})
 
 def post_create_view(request, *args, **kwargs):
 	form = PostCreateForm(request.POST or None)
